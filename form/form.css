@@ -1,30 +1,43 @@
+/*
+██████   █████  ███████ ███████      ██████ ███████ ███████
+██   ██ ██   ██ ██      ██          ██      ██      ██
+██████  ███████ ███████ █████       ██      ███████ ███████
+██   ██ ██   ██      ██ ██          ██           ██      ██
+██████  ██   ██ ███████ ███████      ██████ ███████ ███████
+*/
+/* basics */
 body {
     background-color: #d1d8da;
-    color: #666;
+    color: #555;
 }
 input, textarea {
     display: inline-block;
     border: none;
     border-bottom: solid 1px #ccc;
     padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    color: #18a
 }
 
-input[type="text"]:focus, textarea:focus, select:focus {
-    outline: none;
-    background-color: #f1f8fa;
-    box-shadow: 0 0 0 1px #e1e8ea;
-    border-radius: 5px;
+/* base margin */
+.formsection div {
+    margin: 30px 50px 30px 20px;
+    /*width: 90%;*/
 }
 
+/* section basics */
 .formsection {
     background-color: #fff;
     width: 60%;
-    min-width: 600px;
+    /*min-width: 700px;*/
+    max-width: 800px;
     margin: 30px auto;
     padding: 10px 40px;
     border-radius: 10px;
 }
-
+/* h basics */
 .formsection h1 {
     font-size: 25px;
     padding-left: 10px;
@@ -34,20 +47,42 @@ input[type="text"]:focus, textarea:focus, select:focus {
     font-size: 20px;
     margin-bottom: 15px;
 }
-.formsection div {
-    margin: 30px 20px;
+
+/* input active highlight color */
+input[type="text"]:focus, textarea:focus {
+    outline: none;
+    background-color: #f1f8fa;
+    box-shadow: 0 0 0 1px #e1e8ea;
+    border-radius: 5px;
 }
 
-/*---------
-gender radio
----------*/
+
+/*
+███    ██  █████  ███    ███ ███████
+████   ██ ██   ██ ████  ████ ██
+██ ██  ██ ███████ ██ ████ ██ █████
+██  ██ ██ ██   ██ ██  ██  ██ ██
+██   ████ ██   ██ ██      ██ ███████
+*/
+.name input {
+    width: 30%;
+}
+.name input[name="first_name"] {
+    margin-right: 5%;
+}
+
+/*
+ ██████  ███████ ███    ██ ██████  ███████ ██████
+██       ██      ████   ██ ██   ██ ██      ██   ██
+██   ███ █████   ██ ██  ██ ██   ██ █████   ██████
+██    ██ ██      ██  ██ ██ ██   ██ ██      ██   ██
+ ██████  ███████ ██   ████ ██████  ███████ ██   ██
+*/
 .formsection .gender label {
-    min-width: 90px;
-    margin-left: 10px;
+    margin-left: 1%;
     border-radius: 10px;
     background-color: #f8f8f8;
     border: solid 1px #f8f8f8;
-    text-align: center;
     padding: 10px 20px;
 }
 .formsection .gender label:hover {
@@ -55,35 +90,96 @@ gender radio
     border: solid 1px #e1e8ea;
 }
 .formsection .gender input {
-    margin: 0 5% 0 0;
+    margin: 0 3% 0 0;
+    width: 10%;
+}
+.formsection .gender input + span{
+    margin-right: 1%;
+}
+.formsection .gender input + span + span {
+    vertical-align: middle;
 }
 
-/*---------
-name
----------*/
-.name input:first-child {
-    margin-right: 30px;
+
+/*custom radio buttom*/
+input[type="radio"] {
+    display: none;
+}
+.radiobtn:before {
+    vertical-align: middle;
+    display: inline-block;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border: 2px solid #aaa;
+    border-radius: 10px;
+}
+input[type="radio"]:checked + .radiobtn::before {
+    background-color: #18a;
+    border-color: #18a;
+}
+input[type="radio"]:checked ~ span {
+    color: #18a;
 }
 
-/*---------
-enquete
----------*/
+
+/*
+ ██████  ██████  ███    ██ ████████  █████   ██████ ████████
+██      ██    ██ ████   ██    ██    ██   ██ ██         ██
+██      ██    ██ ██ ██  ██    ██    ███████ ██         ██
+██      ██    ██ ██  ██ ██    ██    ██   ██ ██         ██
+ ██████  ██████  ██   ████    ██    ██   ██  ██████    ██
+*/
+
+.formsection .contact div {
+    margin: 0 0 20px 0;
+}
+.formsection .contact .phone input {
+    width: 15%;
+}
+
+.formsection .contact .mail input[name="mail"] {
+    width: 30%;
+}
+.formsection .contact .mail input[name="domain"] {
+    width: 20%;
+}
+
+/*
+███████ ███    ██  ██████  ██    ██ ███████ ████████ ███████
+██      ████   ██ ██    ██ ██    ██ ██         ██    ██
+█████   ██ ██  ██ ██    ██ ██    ██ █████      ██    █████
+██      ██  ██ ██ ██ ▄▄ ██ ██    ██ ██         ██    ██
+███████ ██   ████  ██████   ██████  ███████    ██    ███████
+                      ▀▀
+*/
 div.enquete {
     margin-top: 50px;
     padding-top: 30px;
     border-top: dashed 1px #3fafcf;
 }
+
 .formsection .enquete label {
+    background-color: #f8f8f8;
+    border: solid 1px #f8f8f8;
+    border-radius: 10px;
+    display: inline-block;
     padding: 10px;
     margin-left: 10px;
     margin-top: 20px;
-    border-radius: 10px;
-    background-color: #f8f8f8;
-    border: solid 1px #f8f8f8;
+    width: 20%;
 }
 .formsection .enquete label:hover {
     background-color: #f1f8fa;
     border: solid 1px #e1e8ea;
+}
+.formsection .enquete input {
+    width: 20%;
+}
+.formsection .enquete .checkbox ~ span {
+    display: inherit;
+    text-align: center;
+    width: 70%;
 }
 
 .question .category {
@@ -93,23 +189,66 @@ div.enquete {
     border: solid 1px #ccc;
 }
 
-/*---------
-textarea
----------*/
-.formsection textarea {
+/*custom checkbox*/
+input[type="checkbox"] {
+    display: none;
+}
+.checkbox {
+    position: relative;
+}
+.checkbox::before {
+    vertical-align: middle;
+    display: inline-block;
+    content: "";
+    width: 15px;
+    height: 15px;
+    border: 2px solid #aaa;
+    border-radius: 5px;
+}
+.checkbox i {
+    display: none;
+}
+input[type="checkbox"]:checked + .checkbox i {
+    display: inline-block;
+    position: absolute;
+    top: 4px;
+    left: 1px;
+    color: #18a;
+}
+input[type="checkbox"]:checked ~ span {
+    color: #18a;
+}
+
+
+
+/*
+████████ ███████ ██   ██ ████████  █████  ██████  ███████  █████
+   ██    ██       ██ ██     ██    ██   ██ ██   ██ ██      ██   ██
+   ██    █████     ███      ██    ███████ ██████  █████   ███████
+   ██    ██       ██ ██     ██    ██   ██ ██   ██ ██      ██   ██
+   ██    ███████ ██   ██    ██    ██   ██ ██   ██ ███████ ██   ██
+*/
+
+.formsection .text {
     margin-left: 10px;
     border-radius: 5px;
     border: solid 1px #ccc;
+    text-align: left;
 }
 
-/*---------
-submit button
----------*/
+/*
+███████ ██    ██ ██████  ███    ███ ██ ████████
+██      ██    ██ ██   ██ ████  ████ ██    ██
+███████ ██    ██ ██████  ██ ████ ██ ██    ██
+     ██ ██    ██ ██   ██ ██  ██  ██ ██    ██
+███████  ██████  ██████  ██      ██ ██    ██
+*/
+
 div.submitbtn {
     margin: 10px auto;
     /*width: 100%;*/
     height: 40px;
-    text-align: center;
+    text-align: left;
 }
 .submitbtn button{
     background-color: #18a;
@@ -118,12 +257,18 @@ div.submitbtn {
     border-radius: 5px;
     width: 20%;
     height: 100%;
+    margin-left: 5%;
+}
+.submitbtn button[type="reset"] {
+    /*display: table-cell;*/
+    background-color: #aaa;
+    min-width: 70px;
+    width: 15%;
+    height: 85%;
+    vertical-align: bottom;
+
+
 }
 .submitbtn button:hover {
-    
-}
-.submitbtn button:first-child + button{
-    /*margin-left: 20px;*/
-    float: right;
-    width: 15%;
+    box-shadow: 0 0 2px 2px #c1c8ca;
 }
