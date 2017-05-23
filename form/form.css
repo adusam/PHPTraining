@@ -7,6 +7,7 @@
 */
 /* basics */
 body {
+    font-family: "メイリオ", sans-serif;
     background-color: #d1d8da;
     color: #555;
 }
@@ -45,15 +46,53 @@ input, textarea {
 }
 .formsection h2 {
     font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-/* input active highlight color */
-input[type="text"]:focus, textarea:focus {
+
+/* ------------------
+input active highlight color
+---------------------*/
+/*input[type="radio"]:focus + label,*/
+/*input[type="checkbox"]:focus + label,*/
+/*input:focus,*/
+.formsection input[type="text"]:focus,
+.formsection input[type="submit"]:focus,
+/* ↑ type指定をしないと、オリジナルのradioとcheckboxに影がついてしまう*/
+.formsection select:focus,
+.formsection input:focus + label,
+.formsection textarea:focus,
+.formsection button:focus
+{
     outline: none;
     background-color: #f1f8fa;
-    box-shadow: 0 0 0 1px #e1e8ea;
+    box-shadow: 0 0 2px 2px #e1e8ea;
+    border-radius: 7px;
+}
+/*input[type="radio"]:checked + label,
+input[type="checkbox"]:checked + label*/
+.formsection input:checked + label
+{
+    background-color: #f1f8fa;
+    box-shadow: -1px -1px 2px 2px #e1e8ea;
+
+}
+
+/*--------------------
+req
+----------------------*/
+.formsection .req {
+    display: inline-block;
+    background-color: #f55;
+    color: #fff;
+    font-size: 13px;
+    font-weight: normal;
+    vertical-align: middle;
+    text-align: center;
     border-radius: 5px;
+    width: 35px;
+    margin-left: 10px;
+
 }
 
 
@@ -90,20 +129,24 @@ input[type="text"]:focus, textarea:focus {
     border: solid 1px #e1e8ea;
 }
 .formsection .gender input {
-    margin: 0 3% 0 0;
-    width: 10%;
+    /*margin: 0 3% 0 0;*/
+    /*width: 10%;*/
 }
-.formsection .gender input + span{
+.formsection .gender label span:first-child{
     margin-right: 1%;
 }
-.formsection .gender input + span + span {
+.formsection .gender label span + span {
     vertical-align: middle;
 }
 
 
 /*custom radio buttom*/
 input[type="radio"] {
-    display: none;
+    /*display: none;*/
+    /*visibility: hidden; */
+    /* none、hiddenにすると、Tabキーで遷移フォーカスできなくなる */
+    width: 0;
+    margin: 0;
 }
 .radiobtn:before {
     vertical-align: middle;
@@ -114,12 +157,24 @@ input[type="radio"] {
     border: 2px solid #aaa;
     border-radius: 10px;
 }
-input[type="radio"]:checked + .radiobtn::before {
+input[type="radio"]:checked + label .radiobtn::before {
     background-color: #18a;
     border-color: #18a;
 }
-input[type="radio"]:checked ~ span {
+input[type="radio"]:checked + label span {
     color: #18a;
+}
+
+/*
+ █████  ██████  ██████  ██████  ███████ ███████ ███████
+██   ██ ██   ██ ██   ██ ██   ██ ██      ██      ██
+███████ ██   ██ ██   ██ ██████  █████   ███████ ███████
+██   ██ ██   ██ ██   ██ ██   ██ ██           ██      ██
+██   ██ ██████  ██████  ██   ██ ███████ ███████ ███████
+*/
+
+.formsection .address input {
+    margin: 0 5% 0 2%;
 }
 
 
@@ -173,9 +228,6 @@ div.enquete {
     background-color: #f1f8fa;
     border: solid 1px #e1e8ea;
 }
-.formsection .enquete input {
-    width: 20%;
-}
 .formsection .enquete .checkbox ~ span {
     display: inherit;
     text-align: center;
@@ -191,7 +243,9 @@ div.enquete {
 
 /*custom checkbox*/
 input[type="checkbox"] {
-    display: none;
+    /*display: none;*/
+    width: 0;
+    margin: 0;
 }
 .checkbox {
     position: relative;
@@ -208,14 +262,14 @@ input[type="checkbox"] {
 .checkbox i {
     display: none;
 }
-input[type="checkbox"]:checked + .checkbox i {
+input[type="checkbox"]:checked + label .checkbox i {
     display: inline-block;
     position: absolute;
     top: 4px;
     left: 1px;
     color: #18a;
 }
-input[type="checkbox"]:checked ~ span {
+input[type="checkbox"]:checked + label  span {
     color: #18a;
 }
 
@@ -244,22 +298,24 @@ input[type="checkbox"]:checked ~ span {
 ███████  ██████  ██████  ██      ██ ██    ██
 */
 
-div.submitbtn {
+.formsection .submitbtn {
     margin: 10px auto;
-    /*width: 100%;*/
     height: 40px;
-    text-align: left;
 }
-.submitbtn button{
-    background-color: #18a;
+.formsection .submitbtn * {
     color: #fff;
+    font-size: 15px;
     border: 0;
-    border-radius: 5px;
-    width: 20%;
-    height: 100%;
+    border-radius: 7px;
     margin-left: 5%;
 }
-.submitbtn button[type="reset"] {
+
+.formsection .submitbtn input[type="submit"] {
+    background-color: #18a;
+    width: 20%;
+    height: 100%;
+}
+.formsection .submitbtn button[type="reset"] {
     /*display: table-cell;*/
     background-color: #aaa;
     min-width: 70px;
@@ -269,6 +325,8 @@ div.submitbtn {
 
 
 }
-.submitbtn button:hover {
+.formsection .submitbtn button:hover,
+.formsection .submitbtn input:hover
+{
     box-shadow: 0 0 2px 2px #c1c8ca;
 }
