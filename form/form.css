@@ -9,44 +9,58 @@
 body {
     font-family: "メイリオ", sans-serif;
     background-color: #d1d8da;
-    color: #555;
+    color: #666;
+    /*font-size: 15px;*/
 }
 input, textarea {
     display: inline-block;
     border: none;
     border-bottom: solid 1px #ccc;
-    padding: 10px;
+    padding: 10px 10px 5px;
     font-size: 20px;
     text-align: center;
     width: 100%;
-    color: #18a
+    color: #18a;
 }
-
-/* base margin */
-.formsection div {
-    margin: 30px 50px 30px 20px;
-    /*width: 90%;*/
+/* placeholder color */
+::-webkit-input-placeholder {
+  color: #ddd;
+}
+::-moz-placeholder {
+  color: #ddd; opacity: 1;
+}
+:-ms-input-placeholder {
+  color: #ddd;
+}
+div {
+    margin: 30px 20px;
 }
 
 /* section basics */
-.formsection {
+section {
     background-color: #fff;
-    width: 60%;
-    /*min-width: 700px;*/
-    max-width: 800px;
+    width: 70%;
+    max-width: 900px;
     margin: 30px auto;
     padding: 10px 40px;
     border-radius: 10px;
 }
 /* h basics */
-.formsection h1 {
+h1 {
     font-size: 25px;
     padding-left: 10px;
     border-bottom: solid 3px #eee;
 }
-.formsection h2 {
-    font-size: 20px;
+h2 {
+    font-size: 18px;
     margin-bottom: 10px;
+}
+
+.flex {
+    display: flex;
+}
+.flex > div {
+    flex: 1 1 auto;
 }
 
 
@@ -57,7 +71,6 @@ input active highlight color
 /*input[type="checkbox"]:focus + label,*/
 /*input:focus,*/
 .formsection input[type="text"]:focus,
-.formsection input[type="submit"]:focus,
 /* ↑ type指定をしないと、オリジナルのradioとcheckboxに影がついてしまう*/
 .formsection select:focus,
 .formsection input:focus + label,
@@ -69,10 +82,16 @@ input active highlight color
     box-shadow: 0 0 2px 2px #e1e8ea;
     border-radius: 7px;
 }
+
+
 /*input[type="radio"]:checked + label,
 input[type="checkbox"]:checked + label*/
 .formsection input:checked + label
 {
+    outline: none;
+    position: relative;
+    left: 2px;
+    top: 2px;
     background-color: #f1f8fa;
     box-shadow: -1px -1px 2px 2px #e1e8ea;
 
@@ -94,6 +113,7 @@ req
     margin-left: 10px;
 
 }
+
 
 
 /*
@@ -128,10 +148,6 @@ req
     background-color: #f1f8fa;
     border: solid 1px #e1e8ea;
 }
-.formsection .gender input {
-    /*margin: 0 3% 0 0;*/
-    /*width: 10%;*/
-}
 .formsection .gender label span:first-child{
     margin-right: 1%;
 }
@@ -156,6 +172,7 @@ input[type="radio"] {
     height: 10px;
     border: 2px solid #aaa;
     border-radius: 10px;
+    margin-right: 5px;
 }
 input[type="radio"]:checked + label .radiobtn::before {
     background-color: #18a;
@@ -174,7 +191,7 @@ input[type="radio"]:checked + label span {
 */
 
 .formsection .address input {
-    margin: 0 5% 0 2%;
+    margin-right: 5%;
 }
 
 
@@ -223,6 +240,7 @@ div.enquete {
     margin-left: 10px;
     margin-top: 20px;
     width: 20%;
+    min-width: 100px;
 }
 .formsection .enquete label:hover {
     background-color: #f1f8fa;
@@ -232,13 +250,6 @@ div.enquete {
     display: inherit;
     text-align: center;
     width: 70%;
-}
-
-.question .category {
-    margin-left: 10px;
-    padding: 5px 50px;
-    border-radius: 5px;
-    border: solid 1px #ccc;
 }
 
 /*custom checkbox*/
@@ -258,6 +269,7 @@ input[type="checkbox"] {
     height: 15px;
     border: 2px solid #aaa;
     border-radius: 5px;
+    margin-left: 10px;
 }
 .checkbox i {
     display: none;
@@ -266,15 +278,32 @@ input[type="checkbox"]:checked + label .checkbox i {
     display: inline-block;
     position: absolute;
     top: 4px;
-    left: 1px;
+    left: 11px;
     color: #18a;
 }
 input[type="checkbox"]:checked + label  span {
     color: #18a;
 }
 
+/*
+ ██████  █████  ████████ ███████  ██████   ██████  ██████  ██    ██
+██      ██   ██    ██    ██      ██       ██    ██ ██   ██  ██  ██
+██      ███████    ██    █████   ██   ███ ██    ██ ██████    ████
+██      ██   ██    ██    ██      ██    ██ ██    ██ ██   ██    ██
+ ██████ ██   ██    ██    ███████  ██████   ██████  ██   ██    ██
+*/
 
-
+.q_category .category {
+    margin-left: 10px;
+    padding: 5px 30px 10px;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+    font-size: inherit;
+    background-color: #f1f8fa;
+    color: #18a;
+}
+.q_category .category option {
+}
 /*
 ████████ ███████ ██   ██ ████████  █████  ██████  ███████  █████
    ██    ██       ██ ██     ██    ██   ██ ██   ██ ██      ██   ██
@@ -284,10 +313,14 @@ input[type="checkbox"]:checked + label  span {
 */
 
 .formsection .text {
+    font-family: inherit;
+    font-size: 15px;
     margin-left: 10px;
     border-radius: 5px;
     border: solid 1px #ccc;
     text-align: left;
+    height: 150px;
+    resize: vertical;
 }
 
 /*
@@ -298,11 +331,10 @@ input[type="checkbox"]:checked + label  span {
 ███████  ██████  ██████  ██      ██ ██    ██
 */
 
-.formsection .submitbtn {
+.submitbtn {
     margin: 10px auto;
-    height: 40px;
 }
-.formsection .submitbtn * {
+.submitbtn * {
     color: #fff;
     font-size: 15px;
     border: 0;
@@ -310,23 +342,177 @@ input[type="checkbox"]:checked + label  span {
     margin-left: 5%;
 }
 
-.formsection .submitbtn input[type="submit"] {
+.submitbtn .submit {
     background-color: #18a;
     width: 20%;
-    height: 100%;
+    min-width: 100px;
 }
-.formsection .submitbtn button[type="reset"] {
-    /*display: table-cell;*/
-    background-color: #aaa;
-    min-width: 70px;
+.submitbtn .reset {
+    background-color: #AA927C;
+    min-width: 90px;
     width: 15%;
-    height: 85%;
     vertical-align: bottom;
+    padding: 5px 10px;
+}
 
+.submitbtn input.submit:focus,
+.submitbtn input.reset:focus
+{
+    outline: none;
+}
+.submitbtn input.submit:active,
+.submitbtn input.reset:active
+{
+    /*outline: none;*/
+    /*position: absolute;*/
+    box-shadow: 0 0 2px 2px #91989a;
+    border-radius: 7px;
 
 }
-.formsection .submitbtn button:hover,
-.formsection .submitbtn input:hover
+
+.submitbtn .submit:hover,
+.submitbtn .reset:hover
 {
     box-shadow: 0 0 2px 2px #c1c8ca;
+}
+
+/*
+
+█████ █████ █████ █████ █████ █████ █████ █████ █████ █████
+*/
+
+/*
+ ██████  ██████  ███    ██ ███████ ██ ██████  ███    ███
+██      ██    ██ ████   ██ ██      ██ ██   ██ ████  ████
+██      ██    ██ ██ ██  ██ █████   ██ ██████  ██ ████ ██
+██      ██    ██ ██  ██ ██ ██      ██ ██   ██ ██  ██  ██
+ ██████  ██████  ██   ████ ██      ██ ██   ██ ██      ██
+*/
+
+
+.confirm form > div {
+    display: flex;
+}
+.confirm form > div h2 {
+    width: 25%;
+}
+.confirm h2 {
+    margin: 0 20px 0 0;
+}
+.confirm h2 + div {
+    display: inline-block;
+    margin: 0;
+}
+.confirm h2 + div  div{
+    margin:0;
+}
+
+.confirm div span{
+    display: inline-block;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+.confirm div span.noselected {
+    color: #ddd;
+    box-shadow: 0 0 0 1px #e1e8ea;
+}
+.confirm div span.selected {
+    background-color: #f1f8fa;
+    box-shadow: 0 0 2px 2px #e1e8ea;
+    border-radius: 7px;
+    color: #18a;
+}
+
+.confirm .nodata {
+    padding: 0;
+    margin: 0;
+    color: #ddd;
+}
+
+.confirm .contact div div:first-child{
+    margin-bottom: 10px;
+}
+.confirm .contact div div span {
+    padding: 0;
+    text-align: left;
+}
+.confirm .contact div div span:first-child {
+    width: 30%;
+    min-width: 130px;
+}
+/*
+
+█████ █████ █████ █████ █████ █████ █████ █████ █████ █████
+*/
+/*
+ ██████  ██████  ███    ███ ██████  ██      ███████ ████████ ██  ██████  ███    ██
+██      ██    ██ ████  ████ ██   ██ ██      ██         ██    ██ ██    ██ ████   ██
+██      ██    ██ ██ ████ ██ ██████  ██      █████      ██    ██ ██    ██ ██ ██  ██
+██      ██    ██ ██  ██  ██ ██      ██      ██         ██    ██ ██    ██ ██  ██ ██
+ ██████  ██████  ██      ██ ██      ███████ ███████    ██    ██  ██████  ██   ████
+*/
+
+.completion a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #1f8faf;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.completion a:hover,
+.completion a:focus
+{
+    outline: none;
+    box-shadow: 0 0 3px 3px #ddd;
+}
+
+
+/*
+
+█████ █████ █████ █████ █████ █████ █████ █████ █████ █████
+*/
+
+/*
+███    ███  █████  ███    ██  █████   ██████  ███████
+████  ████ ██   ██ ████   ██ ██   ██ ██       ██
+██ ████ ██ ███████ ██ ██  ██ ███████ ██   ███ █████
+██  ██  ██ ██   ██ ██  ██ ██ ██   ██ ██    ██ ██
+██      ██ ██   ██ ██   ████ ██   ██  ██████  ███████
+*/
+
+
+.manage {
+    width: 90%;
+    max-width: inherit;
+}
+.manage table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.manage thead {
+    font-weight: bold;
+    border-bottom: 2px solid #d1d8da;
+}
+.manage thead tr th {
+    border-right: 2px solid #ddd;
+    padding: 0 10px;
+    white-space: nowrap;
+}
+.manage table td {
+    border-right: 1px solid #ddd;
+    white-space: nowrap;
+    padding-left: 5px;
+}
+.manage table tr:nth-child(2n) {
+    background-color: #f1f8fa;
+}
+.manage table tr:hover {
+    background-color: #18a;
+    color: #fff;
 }
