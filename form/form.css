@@ -149,7 +149,7 @@ req
     border: solid 1px #e1e8ea;
 }
 .formsection .gender label span:first-child{
-    margin-right: 1%;
+    margin-right: 3%;
 }
 .formsection .gender label span + span {
     vertical-align: middle;
@@ -164,22 +164,113 @@ input[type="radio"] {
     width: 0;
     margin: 0;
 }
-.radiobtn:before {
+.radiobtn {
+    position: relative;
     vertical-align: middle;
     display: inline-block;
-    content: "";
     width: 10px;
     height: 10px;
     border: 2px solid #aaa;
     border-radius: 10px;
-    margin-right: 5px;
 }
-input[type="radio"]:checked + label .radiobtn::before {
+input[type="radio"]:checked + label .radiobtn {
     background-color: #18a;
     border-color: #18a;
+    transition: background-color 500ms 0ms ease-out;
 }
+
 input[type="radio"]:checked + label span {
     color: #18a;
+}
+/*male*/
+input[type="radio"]:checked + label.male .radiobtn {
+    position: relative;
+    top: 3px;
+}
+input[type="radio"] + label.male .radiobtn::before {
+    content: "";
+    width: 2px;
+    height: 0%;
+    position: absolute;
+    left: 70%;
+    bottom: 70%;
+    background-color: #ddd;
+    transform: rotate(45deg);
+    transition: all 500ms 0ms ease;
+}
+input[type="radio"]:checked + label.male .radiobtn::before {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    bottom: 70%;
+    left: 110%;
+    background-color: #18a;
+    transform: rotate(45deg);
+
+}
+input[type="radio"] + label.male .radiobtn::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 150%;
+    bottom: 150%;
+    border-top: 0px solid #ddd;
+    border-right: 0px solid #ddd;
+    transition: all 500ms 0ms ease-out;
+}
+input[type="radio"]:checked + label.male .radiobtn::after {
+    content: "";
+    width: 75%;
+    height: 75%;
+    position: absolute;
+    left: 80%;
+    bottom: 80%;
+    border-top: 2px solid #18a;
+    border-right: 2px solid #18a;
+}
+
+/*female*/
+input[type="radio"]:checked + label.female .radiobtn {
+    position: relative;
+    bottom: 3px;
+}
+input[type="radio"] + label.female .radiobtn::before {
+    content: "";
+    width: 2px;
+    height: 0%;
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    background-color: #ddd;
+    transition: all 500ms 0ms ease-out;
+}
+input[type="radio"]:checked + label.female .radiobtn::before {
+    content: "";
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    background-color: #18a;
+}
+input[type="radio"] + label.female .radiobtn::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    border-top: 2px solid #ddd;
+    top: 140%;
+    left: 50%;
+    transition: all 500ms 0ms ease-out;
+}
+input[type="radio"]:checked + label.female .radiobtn::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-top: 2px solid #18a;
+    top: 140%;
+    left: 0;
+
 }
 
 /*
@@ -277,9 +368,10 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked + label .checkbox i {
     display: inline-block;
     position: absolute;
-    top: 4px;
+    top: -2px;
     left: 11px;
     color: #18a;
+    font-size: 23px;
 }
 input[type="checkbox"]:checked + label  span {
     color: #18a;
@@ -349,7 +441,7 @@ input[type="checkbox"]:checked + label  span {
 }
 .submitbtn .reset {
     background-color: #AA927C;
-    min-width: 90px;
+    min-width: 110px;
     width: 15%;
     vertical-align: bottom;
     padding: 5px 10px;
@@ -488,25 +580,26 @@ input[type="checkbox"]:checked + label  span {
 .manage {
     width: 90%;
     max-width: inherit;
+    overflow: auto;
 }
 .manage table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
-
+/**/
 .manage thead {
     font-weight: bold;
     border-bottom: 2px solid #d1d8da;
 }
 .manage thead tr th {
     border-right: 2px solid #ddd;
-    padding: 0 10px;
+    padding: 0 3px;
     white-space: nowrap;
 }
 .manage table td {
     border-right: 1px solid #ddd;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     padding-left: 5px;
 }
 .manage table tr:nth-child(2n) {

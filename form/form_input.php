@@ -1,7 +1,8 @@
 <!--
 入力画面
-修正の際は確認画面からここへPOSTされるので、値の有無の判定をしている。
-sousinn
+修正の際は確認画面からここへPOSTされるので、値の有無の判定する
+確認画面へPOSTと
+
 
 
  -->
@@ -28,9 +29,10 @@ sousinn
             <div class="gender">
                 <h2>性別</h2>
                 <div>
-                    <input id="male" type="radio" name="gender" value="男性" <?= isset($_POST["gender"]) && $_POST["gender"] == "男性" ? "checked" : "" ; ?> ><label for="male"><span class="radiobtn"></span><span>男</span></label>
-                    <input id="female" type="radio" name="gender" value="女性" <?= isset($_POST["gender"]) && $_POST["gender"] == "女性" ? "checked" : "" ; ?> ><label for="female"><span class="radiobtn"></span><span>女</span></label>
-                    <input id="others" type="radio" name="gender" value="その他" <?= isset($_POST["gender"]) && $_POST["gender"] == "その他" ? "checked" : "" ; ?> ><label for="others"><span class="radiobtn"></span><span>その他</span></label>
+
+                    <input id="male" type="radio" name="gender" value="男性" <?= isset($_POST["gender"]) && $_POST["gender"] == "男性" ? "checked" : "" ; ?> ><label class="male" for="male"><span class="radiobtn"></span><span>男</span></label>
+                    <input id="female" type="radio" name="gender" value="女性" <?= isset($_POST["gender"]) && $_POST["gender"] == "女性" ? "checked" : "" ; ?> ><label class="female" for="female"><span class="radiobtn"></span><span>女</span></label>
+                    <input id="others" type="radio" name="gender" value="その他" <?= isset($_POST["gender"]) && $_POST["gender"] == "その他" ? "checked" : "" ; ?> ><label class="others" for="others"><span class="radiobtn"></span><span>その他</span></label>
                 </div>
             </div>
             <div class="address">

@@ -1,6 +1,15 @@
 <?php
 $path = "data.csv";
 $lines = file($path);
+//ファイルの行単位で配列へ格納
+
+/*
+行と列の各値を2重foreachで出力
+出力前に、特殊の回避
+
+*/
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,12 +40,15 @@ $lines = file($path);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($lines as $line) : ?>
-                    <?php $data = explode(",", str_replace("<\>", "<br>", $line) ); ?>
+                    <?php
+                    foreach ($lines as $line) :
+                        $line = htmlentities($line);
+                        $data = explode(",", str_replace("<\>", "<br>", $line) );
+                    ?>
                     <tr>
-                    <?php foreach ($data as $val) : ?>
+                        <?php foreach ($data as $val) : ?>
                         <td><?= $val ?></td>
-                    <?php endforeach ?>
+                        <?php endforeach ?>
                     </tr>
                     <?php endforeach ?>
                 </tbody>

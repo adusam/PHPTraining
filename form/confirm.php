@@ -4,14 +4,28 @@
 戻るボタンで前の画面にPOSTする。
 確定で完了画面へPOST
 
-
+input type=submit の onClickでformのactionを指定することで遷移先を複数持たせる。
 -->
 
 <?php
-// var_dump($_POST);
 
-$_POST["first_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u','' ,$$_POST["first_name"]);
-$_POST["second_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u','' ,$$_POST["second_name"]);
+// $_POST["first_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u','' ,$_POST["first_name"]);
+// $_POST["second_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u','' ,$_POST["second_name"]);
+// //ひらがな・カタカナ・漢字・全角数字・半角英数字、”以外”の文字を消す。
+//
+// $_POST["phone1"] = preg_replace('/[^0-9]+/u', '', $_POST["phone1"]);
+// $_POST["phone2"] = preg_replace('/[^0-9]+/u', '', $_POST["phone2"]);
+// $_POST["phone3"] = preg_replace('/[^0-9]+/u', '', $_POST["phone3"]);
+// //数字以外の文字を消す。
+
+
+foreach ($_POST as $key => $value) {
+    // $_POST[$key] = htmlspecialchars($value);
+    $_POST[$key] = htmlentities($value);
+    //htmlentitiesはほぼすべての記号を置換
+}
+//特殊文字の置換
+
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +38,7 @@ $_POST["second_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-�
     <body>
         <section class="confirm">
             <h1>お問い合わせ内容の確認</h1>
-            <form action="confirm.php" method="POST">
+            <form action="" method="POST">
                 <div class="name">
                     <h2>お名前</h2>
                     <div>
@@ -68,6 +82,7 @@ $_POST["second_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-�
                 <div class="submitbtn">
                     <input class="submit" type="submit" name="send" value="確定" onClick="form.action='form_output.php';return true">
                     <input class="reset" type="submit" name="back" value="修正する" onClick="form.action='form_input.php';return true">
+                    <input class="reset" type="button" onClick="location.href='form_input.php'" value="未入力状態へ" >
 
                 </div>
                 <input type="hidden" name="first_name" value="<?= isset($_POST["first_name"]) ? $_POST["first_name"] : '' ;?>">
