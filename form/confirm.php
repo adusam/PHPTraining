@@ -57,11 +57,11 @@ foreach ($_POST as $key => $value) {
                     <h2>住所</h2>
                     <div><?= !empty($_POST["address"]) ? $_POST["address"] : "<span class=\"nodata\">入力なし</span>" ?></div>
                 </div>
-                <div class="contact flex">
+                <div class="contact">
                     <h2>連絡先</h2>
                     <div>
-                        <div class="flex"><span>電話番号：</span><span><?= $_POST["phone1"] . "-" . $_POST["phone2"] . "-" . $_POST["phone3"] ?></span></div>
-                        <div class="flex"><span>メールアドレス：</span><span><?= $_POST["mail"] . "@" .  $_POST["domain"] ?></span></div>
+                        <div><span>電話番号：</span><span><?= $_POST["phone1"] . "-" . $_POST["phone2"] . "-" . $_POST["phone3"] ?></span></div>
+                        <div><span>メールアドレス：</span><span><?= $_POST["mail"] . "@" .  $_POST["domain"] ?></span></div>
                     </div>
                 </div>
                 <div class="enquete">
@@ -77,7 +77,7 @@ foreach ($_POST as $key => $value) {
                 </div>
                 <div class="q_text">
                     <h2>質問内容</h2>
-                    <div><?= !empty($_POST["q_text"]) ? $_POST["q_text"] : "<span class=\"nodata\">入力なし</span>"; ?></div>
+                    <div><?= !empty($_POST["q_text"]) ? str_replace(PHP_EOL, "<br>", $_POST["q_text"]) : "<span class=\"nodata\">入力なし</span>"; ?></div>
                 </div>
                 <div class="submitbtn">
                     <input class="submit" type="submit" name="send" value="確定" onClick="form.action='form_output.php';return true">

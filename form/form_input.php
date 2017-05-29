@@ -61,8 +61,10 @@
             </div>
             <div class="enquete">
                 <h2>どこで知ったか</h2>
+                <div>
                     <input id="book" type="checkbox" name="book" value="雑誌" <?= isset($_POST["book"]) && $_POST["book"] == "雑誌" ? "checked" : "" ; ?> ><label for="book"><span class="checkbox"><i class="fa fa-check"></i></span><span>雑誌</span></label>
                     <input id="paper" type="checkbox" name="paper" value="新聞" <?= isset($_POST["paper"]) && $_POST["paper"] == "新聞" ? "checked" : "" ; ?> ><label for="paper"><span class="checkbox"><i class="fa fa-check"></i></span><span>新聞</span></label>
+                </div>
             </div>
             <div class="q_category">
                 <h2>質問カテゴリ</h2>
