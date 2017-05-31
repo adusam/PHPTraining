@@ -9,15 +9,20 @@ input type=submit の onClickでformのactionを指定することで遷移先�
 
 <?php
 
-// $_POST["first_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u','' ,$_POST["first_name"]);
-// $_POST["second_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u','' ,$_POST["second_name"]);
-// //ひらがな・カタカナ・漢字・全角数字・半角英数字、”以外”の文字を消す。
-//
-// $_POST["phone1"] = preg_replace('/[^0-9]+/u', '', $_POST["phone1"]);
-// $_POST["phone2"] = preg_replace('/[^0-9]+/u', '', $_POST["phone2"]);
-// $_POST["phone3"] = preg_replace('/[^0-9]+/u', '', $_POST["phone3"]);
-// //数字以外の文字を消す。
+// $_POST["first_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z一-龠\-\r]+/u','' ,$_POST["first_name"]);
+// $_POST["second_name"] = preg_replace('/[^ぁ-んァ-ンーa-zA-Z一-龠\-\r]+/u','' ,$_POST["second_name"]);
+//ひらがな・カタカナ・漢字・全角数字・半角英字、”以外”の文字を消す。
 
+$error = false;
+if (preg_match('/[^ぁ-んァ-ンーa-zA-Z一-龠\-\r]+/u', $_POST["first_name"]) ||
+    preg_match('/[^ぁ-んァ-ンーa-zA-Z一-龠\-\r]+/u', $_POST["second_name"]) ||
+    preg_match('/[^0-9]+/u', $_POST["phone1"]) ||
+    preg_match('/[^0-9]+/u', $_POST["phone2"]) ||
+    preg_match('/[^0-9]+/u', $_POST["phone3"]) )
+    //規定以外の文字があるとき
+{
+    $error = true;
+}
 
 foreach ($_POST as $key => $value) {
     // $_POST[$key] = htmlspecialchars($value);
@@ -79,8 +84,9 @@ foreach ($_POST as $key => $value) {
                     <h2>質問内容</h2>
                     <div><?= !empty($_POST["q_text"]) ? str_replace(PHP_EOL, "<br>", $_POST["q_text"]) : "<span class=\"nodata\">入力なし</span>"; ?></div>
                 </div>
+                <?= $error ? '<p class="req">入力にエラーがあるため確定できません。</p>': ""; ?>
                 <div class="submitbtn">
-                    <input class="submit" type="submit" name="send" value="確定" onClick="form.action='form_output.php';return true">
+                    <input class="submit" type="submit" name="send" value="確定" onClick="form.action='form_output.php';return true" <?= $error ? "disabled": ""; ?> >
                     <input class="reset" type="submit" name="back" value="修正する" onClick="form.action='form_input.php';return true">
                     <input class="reset" type="button" onClick="location.href='form_input.php'" value="未入力状態へ" >
 

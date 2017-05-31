@@ -9,20 +9,36 @@ $lines = file($path);
 //ファイルの行単位で配列へ格納
 foreach ($lines as &$value) {
     $data[] = preg_split("/,/", str_replace("&lt;\&gt;", "<br>", htmlentities($value)));
-    // $data[] = preg_split("/,/", str_replace("&lt;\&gt;", "<br>", $value));
 }
-// var_dump($data);
-$rowcount = count($data);//ループ用行数カウント
+//行を各要素に分割
+
+function filter($a) {
+    if ($a[$_GET["sort"]] === "" || !preg_match("/[^\s]/", $a[$_GET["sort"]]) ) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function filter_not($a) {
+    return !filter($a);
+}
+
+$blank = array_filter($data, "filter");
+$exist = array_filter($data, "filter_not");
+
+// var_dump($exist);
+
+$bcount = count($blank);
+$ecount = count($exist);
+//table出力ループカウント
 
 if (isset($_GET["sort"])) {
-    foreach ($data as $line) {
+    foreach ($exist as $line) {
         $rows[] = $line[$_GET["sort"]];
     }
-    array_multisort($rows, SORT_ASC, $data, SORT_REGULAR);
-}
-
-function upmark() {
-    echo '<i class="fa fa-caret-up" aria-hidden="true"></i>';
+    array_multisort($rows, SORT_ASC, $exist, SORT_FLAG_CASE);
+    //ソートする列の配列を作って、それぞ基準に元のデータをソート
 }
 
 ?>
@@ -45,7 +61,7 @@ function upmark() {
                         <th class="theader"><a href="manage.php?sort=0">No. <?= (isset($_GET["sort"]) && $_GET["sort"] == 0) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
                         <th class="theader"><a href="manage.php?sort=1">姓 <?= (isset($_GET["sort"]) && $_GET["sort"] == 1) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
                         <th class="theader"><a href="manage.php?sort=2">名 <?= (isset($_GET["sort"]) && $_GET["sort"] == 2) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
-                        <th class="theader"><a href="manage.php?sort=3">性別 <?= (isset($_GET["sort"]) && $_GET["sort"] == 3) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
+                        <th class="theader gender"><a href="manage.php?sort=3">性別 <?= (isset($_GET["sort"]) && $_GET["sort"] == 3) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
                         <th class="theader"><a href="manage.php?sort=4">住所 <?= (isset($_GET["sort"]) && $_GET["sort"] == 4) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
                         <th class="theader"><a href="manage.php?sort=5">電話番号 <?= (isset($_GET["sort"]) && $_GET["sort"] == 5) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
                         <th class="theader"><a href="manage.php?sort=6">メールアドレス <?= (isset($_GET["sort"]) && $_GET["sort"] == 6) ? '<i class="fa fa-caret-up" aria-hidden="true"></i>' : '' ; ?></a></th>
@@ -56,13 +72,20 @@ function upmark() {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i = 0; $i < $rowcount; ++$i) :?>
+                    <?php foreach ($exist as $line) :?>
                     <tr>
-                        <?php foreach ($data[$i] as &$val) : ?>
+                        <?php foreach ($line as &$val) : ?>
                         <td><?= $val ?></td>
                         <?php endforeach ?>
                     </tr>
-                    <?php endfor ?>
+                <?php endforeach ?>
+                    <?php foreach ($blank as $line) :?>
+                    <tr>
+                        <?php foreach ($line as &$val) : ?>
+                        <td><?= $val ?></td>
+                        <?php endforeach ?>
+                    </tr>
+                <?php endforeach ?>
                 </tbody>
             </table>
 

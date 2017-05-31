@@ -104,7 +104,7 @@ input[type="checkbox"]:checked + label*/
 /*--------------------
 req
 ----------------------*/
-.formsection .req {
+.req {
     display: inline-block;
     background-color: #f55;
     color: #fff;
@@ -434,9 +434,6 @@ input[type="checkbox"]:checked + label  span {
 ███████  ██████  ██████  ██      ██ ██    ██
 */
 
-.submitbtn {
-    margin: 10px auto;
-}
 .submitbtn * {
     color: #fff;
     font-size: 15px;
@@ -479,6 +476,9 @@ input[type="checkbox"]:checked + label  span {
     box-shadow: 0 0 2px 2px #c1c8ca;
 }
 
+input[disabled].submit {
+    background-color: #ddd;
+}
 /*
 
 █████ █████ █████ █████ █████ █████ █████ █████ █████ █████
@@ -548,6 +548,12 @@ input[type="checkbox"]:checked + label  span {
     font-weight: bold;
 }
 
+.confirm .req {
+    width: auto;
+    font-size: 15px;
+    padding: 5px 5px 5px 10px;
+}
+
 /*
 
 █████ █████ █████ █████ █████ █████ █████ █████ █████ █████
@@ -610,10 +616,13 @@ input[type="checkbox"]:checked + label  span {
     padding: 0 3px;
     white-space: nowrap;
 }
+.manage thead th.gender {
+    min-width: 51px;
+}
+
 .manage table td {
     border-right: 1px solid #ddd;
-    /*white-space: nowrap;*/
-    padding-left: 5px;
+    padding: 5px;
 }
 .manage table tr:nth-child(2n) {
     background-color: #f1f8fa;
